@@ -14,3 +14,5 @@ jobs:
         run: dotnet test tests/ClaimsOps.Api.Tests/ClaimsOps.Api.Tests.csproj --configuration Release
       - name: Build API
         run: dotnet build src/ClaimsOps.Api/ClaimsOps.Api.csproj --configuration Release --no-restore
+      - name: Build Docker image
+        run: docker build -t claimsops-ci .
