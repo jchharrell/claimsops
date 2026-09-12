@@ -8,4 +8,9 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
-      - run: dotnet test tests/ClaimsOps.Core.Tests/ClaimsOps.Core.Tests.csproj --configuration Release
+      - name: Core tests
+        run: dotnet test tests/ClaimsOps.Core.Tests/ClaimsOps.Core.Tests.csproj --configuration Release
+      - name: API integration tests
+        run: dotnet test tests/ClaimsOps.Api.Tests/ClaimsOps.Api.Tests.csproj --configuration Release
+      - name: Build API
+        run: dotnet build src/ClaimsOps.Api/ClaimsOps.Api.csproj --configuration Release --no-restore
