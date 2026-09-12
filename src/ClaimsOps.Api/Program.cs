@@ -14,6 +14,7 @@ app.UseCors();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.MapGet("/", () => Results.Redirect("/swagger"));
 app.MapGet("/health", () => Results.Ok(new { status = "ok", service = "claimsops-api" }));
 
 app.MapGet("/api/claims", (SqliteClaimStore store, ClaimWorkflow workflow) =>
