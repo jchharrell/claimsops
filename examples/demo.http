@@ -1,0 +1,34 @@
+@base = http://localhost:5000
+
+### Health
+GET {{base}}/health
+
+### Create a critical, aging claim
+POST {{base}}/api/claims
+Content-Type: application/json
+
+{
+  "id": "CLM-DEMO-001",
+  "policyNumber": "POL-2026-44",
+  "severity": 4,
+  "exposure": 92000,
+  "reportedAt": "2026-09-10T12:00:00Z",
+  "assignedAdjuster": "Maya"
+}
+
+### Ranked queue
+GET {{base}}/api/claims
+
+### Why is this claim urgent?
+GET {{base}}/api/claims/CLM-DEMO-001/explain
+
+### Move into investigation
+POST {{base}}/api/claims/CLM-DEMO-001/transition
+Content-Type: application/json
+
+{
+  "status": 1
+}
+
+### Audit trail
+GET {{base}}/api/claims/CLM-DEMO-001/audit
